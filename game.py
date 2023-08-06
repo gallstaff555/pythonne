@@ -1,69 +1,54 @@
 import pygame
-from pytmx.util_pygame import load_pygame
+import pytmx
+ 
+class TiledMap:
+    def __init__(self, filename):
+        self.tmx_data = pytmx.load_pygame(filename)
+        self.width = self.tmx_data.width * self.tmx_data.tilewidth
+        self.height = self.tmx_data.height * self.tmx_data.tileheight
+ 
+    def render(self, surface):
 
-class Tile(pygame.sprite.Sprite):
-    def __init__(self, pos, surf, groups):
-        super().__init__(groups)
-        self.image = surf 
-        self.rec = self.image.get_rect(topleft = pos)
+        half_width = self.tmx_data.tilewidth / 2
+        half_height = self.tmx_data.tileheight / 2
+        layer_count = 0
+        for layer in self.tmx_data.layers:
+            print(f"layer:{layer}")
+            for row in range(self.tmx_data.width):
+                for column in range(self.tmx_data.height):
+                    print(f"Row:{row}")
+                    my_image = self.tmx_data.get_tile_image(row, column, layer_count)
+                    print(f"image: {my_image}")
+                    print(f"type:{type(my_image)}")
+                    if my_image is not None:
+                        screen.blit(my_image, (250 + column * half_width - row * half_width, \
+                                               250 + row * half_height + column * half_height))
+            layer_count = layer_count + 1
+
+            # for x, y, image in layer.tiles():
+            #     print(f"x: {x}, y:{y}, image:{image}")
+            #     screen.blit(image, (x * 32, y * 32))
+
+    def make_map(self):
+        print(f"width: {self.width}, height: {self.height}")
+        temp_surface = pygame.Surface((self.width, self.height))
+        self.render(temp_surface)
+        return temp_surface
+    
 
 pygame.init()
 screen = pygame.display.set_mode((1280, 720))
 clock = pygame.time.Clock()
 running = True 
 
-tmx_data = load_pygame('./assets/map/basic-map.tmx')
-sprite_group = pygame.sprite.Group()
-
-for layer in tmx_data.layers:
-    print(layer)
-    for x, y, surf in layer.tiles():
-        pos = (x * 32, y * 32)
-        Tile(pos = pos, surf = surf, groups = sprite_group)
-
-# get layers
-# for layer in tmx_data.layers:
-#     print(layer)
-#tmx_data.get_layer_by_name()
-
-#get objects 
-# for obj in tmx_data.objectgroups:
-#     print(obj)
-#for obj in tmx_data.objects:
-#   print(obj)
-
-# get tiles 
-# layer = tmx_data.get_layer_by_name("Layer_1")
-# for x,y,surface in layer.tiles():
-#     print(x*32)
-#     print(y*32)
-#     print(surface)
-
-#layer.data
-
-# cycle through all layers
-# for layer in tmx_data.visible_layers:
-# 	# if layer.name in ('Floor', 'Plants and rocks', 'Pipes')
-# 	if hasattr(layer,'data'):
-# 		for x,y,surf in layer.tiles():
-# 			pos = (x * 32, y * 32)
-# 			Tile(pos = pos, surf = surf, groups = sprite_group)
+tiled_map = TiledMap('./assets/map/basic-map.tmx')
+tiled_map.make_map()
 
 while running:
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False 
-
-    screen.fill("purple")
-    sprite_group.draw(screen)
- 
-    #sprite_group.draw(screen)
-
-    # for layer in tmx_data.visible_layers:
-    #     for x, y, image in layer.tiles():
-    #     #image = tmx_data.get_tile_image(x, y, layer)
-    #         screen.blit(image, (x * 32, y * 32))
 
     pygame.display.update()
 
