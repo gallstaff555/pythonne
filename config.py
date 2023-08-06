@@ -1,0 +1,8 @@
+class Config:
+    TILE_WIDTH = 32
+    TILE_HEIGHT = 16
+    TILE_ROW = 10
+    TILE_COL = 10
+    TILE_COUNT = 100
+    X_OFFSET = (TILE_WIDTH * TILE_ROW / 2)
+    Y_OFFSET = -1 * TILE_HEIGHT
