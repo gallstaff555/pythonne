@@ -28,8 +28,8 @@ while running:
             running = False 
 
     pygame.display.update()
-    #grid.get_mouseover_tile(pygame.mouse)
-    grid.test()
+    grid.get_mouseover_tile(pygame.mouse)
+    #grid.test()
 
     clock.tick(1)
 
