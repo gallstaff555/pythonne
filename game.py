@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import pygame
-#import pytmx
 from tiled_map import TiledMap
 from grid import Grid
 from config import Config
@@ -15,7 +14,6 @@ clock = pygame.time.Clock()
 running = True 
 
 background = TiledMap('./assets/map/basic-map-2.tmx')
-background.make_map()
 background.render(screen)
 
 grid = Grid()
@@ -29,7 +27,6 @@ while running:
 
     pygame.display.update()
     grid.get_mouseover_tile(pygame.mouse)
-    #grid.test()
 
     clock.tick(1)
 
