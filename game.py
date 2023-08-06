@@ -9,8 +9,8 @@ from config import Config
 cfg = Config()
 
 pygame.init()
-screen = pygame.display.set_mode((cfg.TILE_ROW * cfg.TILE_WIDTH, \
-                                   cfg.TILE_COL * cfg.TILE_HEIGHT))
+screen = pygame.display.set_mode((cfg.ROW * cfg.TILE_WIDTH, \
+                                   cfg.COL * cfg.TILE_HEIGHT))
 clock = pygame.time.Clock()
 running = True 
 
@@ -28,7 +28,8 @@ while running:
             running = False 
 
     pygame.display.update()
-    grid.get_mouseover_tile(pygame.mouse)
+    #grid.get_mouseover_tile(pygame.mouse)
+    grid.test()
 
     clock.tick(1)
 

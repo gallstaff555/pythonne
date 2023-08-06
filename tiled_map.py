@@ -17,7 +17,6 @@ class TiledMap:
         half_height = self.tmx_data.tileheight / 2
         layer_count = 0
         for layer in self.tmx_data.layers:
-            print(f"layer:{layer}")
             for column in range(self.tmx_data.width):
                 for row in range(self.tmx_data.height):
                     image = self.tmx_data.get_tile_image(column, row, layer_count)
