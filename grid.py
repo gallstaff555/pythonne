@@ -24,10 +24,10 @@ class Grid():
     # Display tile currently moused over
     def get_mouseover_tile(self, mouse):
         point_to_grid = self.get_point_to_grid((self.x_axis, self.y_axis))
-        m_pos = pygame.mouse.get_pos()
-        m_grid_pos = self.transform_to_point(pygame.math.Vector2(m_pos) - self.origin, point_to_grid)
-        m_col, m_row = int(m_grid_pos[0]), int(m_grid_pos[1])
-        print(f"m_col: {m_col}, m_row: {m_row}")
+        mouse_pos = pygame.mouse.get_pos()
+        mouse_grid_pos = self.transform_to_point(pygame.math.Vector2(mouse_pos) - self.origin, point_to_grid)
+        mouse_col, mouse_row = int(mouse_grid_pos[0]), int(mouse_grid_pos[1])
+        return (mouse_col, mouse_row)
         
     # Convert tile coordinates to mouse coordinate
     def transform_to_point(self, point, mat2x2):
