@@ -10,3 +10,4 @@ class Config:
     TILE_COUNT = 100
     X_OFFSET = (TILE_WIDTH * ROW / 2)
     Y_OFFSET = -1 * TILE_HEIGHT
+    ADJ_Y_OFFSET = 22
