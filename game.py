@@ -14,7 +14,7 @@ screen = pygame.display.set_mode((cfg.ROW * cfg.TILE_WIDTH, \
 clock = pygame.time.Clock()
 running = True 
 
-tile_map = TiledMap('./assets/map/basic-map-2.tmx')
+tile_map = TiledMap('./assets/map/basic-map.tmx')
 tile_map.render(screen)
 
 grid = Grid()

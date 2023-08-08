@@ -1,8 +1,8 @@
 class Config:
     TILE_WIDTH = 32
     TILE_HEIGHT = 16
-    ROW = 10
-    COL = 10
+    ROW = 20
+    COL = 20
     FULL_WIDTH = TILE_WIDTH * ROW
     FULL_HEIGHT = TILE_HEIGHT * COL
     HALF_WIDTH = FULL_WIDTH / 2
