@@ -31,6 +31,11 @@ class TiledMap:
 
     def get_tile_coords_dict(self):
         return self.tile_coords_dict
+    
+    def get_tile_props(self, tile_coords):
+        return self.tmx_data.get_tile_image(tile_coords[0], tile_coords[1], 1)
+
+
 
 
 
