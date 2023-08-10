@@ -25,9 +25,9 @@ tile_map.render(screen)
 tile_coords_dict = tile_map.get_tile_coords_dict()
 grid = Grid(tile_coords_dict)
 
-#placed_game_tiles = pygame.sprite.Group()
+# Sprite group for storing placed tiles
 placed_game_tiles = SpriteGroup()
-road_img = pygame.image.load('./assets/sprites/roads/road_1.png').convert_alpha()
+
 
 while running:
 
@@ -57,7 +57,7 @@ while running:
                 random_tile = random.randint(1,12)
                 new_tile = GameTile((x,y), pygame.image.load(f'./assets/sprites/roads/road_{random_tile}.png').convert_alpha(), \
                             placed_game_tiles)
-                
+
     pygame.display.update()
     clock.tick(20)
 
