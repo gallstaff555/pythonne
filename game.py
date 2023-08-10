@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 
+# used for finding modules
+import sys
+sys.path.insert(0,"..")
+
 import pygame
-import pytmx
-from tiled_map import TiledMap
-from grid import Grid
 from config import Config
-from sprite_group import SpriteGroup
-from game_tile import GameTile
+from display.tiled_map import TiledMap
+from display.grid import Grid
+from display.sprite_group import SpriteGroup
+from display.game_tile import GameTile
 
 cfg = Config()
 
