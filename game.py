@@ -10,6 +10,7 @@ from display.tiled_map import TiledMap
 from display.grid import Grid
 from display.sprite_group import SpriteGroup
 from display.game_tile import GameTile
+import random
 
 cfg = Config()
 
@@ -53,7 +54,9 @@ while running:
                 x,y = tile_coords_dict.get(grid.get_mouseover_tile())
                 x = x + (cfg.TILE_WIDTH / 2)
                 y = y + cfg.TILE_HEIGHT
-                new_tile = GameTile((x,y), road_img, placed_game_tiles)
+                random_tile = random.randint(1,12)
+                new_tile = GameTile((x,y), pygame.image.load(f'./assets/sprites/roads/road_{random_tile}.png').convert_alpha(), \
+                            placed_game_tiles)
                 
     pygame.display.update()
     clock.tick(20)
