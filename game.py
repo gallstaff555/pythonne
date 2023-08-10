@@ -5,6 +5,7 @@ import pytmx
 from tiled_map import TiledMap
 from grid import Grid
 from config import Config
+from sprite_group import SpriteGroup
 from game_tile import GameTile
 
 cfg = Config()
@@ -20,7 +21,8 @@ tile_map.render(screen)
 tile_coords_dict = tile_map.get_tile_coords_dict()
 grid = Grid(tile_coords_dict)
 
-placed_game_tiles = pygame.sprite.Group()
+#placed_game_tiles = pygame.sprite.Group()
+placed_game_tiles = SpriteGroup()
 road_img = pygame.image.load('./assets/sprites/roads/road_1.png').convert_alpha()
 
 while running:
@@ -44,11 +46,10 @@ while running:
             running = False 
         if event.type == pygame.MOUSEBUTTONDOWN:
             if highlighted_tile is not None and grid.valid_tile(highlighted_tile):
-                print(grid.get_mouseover_tile())
+                print(f"Placing tile at {grid.get_mouseover_tile()}")
                 x,y = tile_coords_dict.get(grid.get_mouseover_tile())
                 x = x + (cfg.TILE_WIDTH / 2)
                 y = y + cfg.TILE_HEIGHT
-                print(pygame.mouse.get_pos())
                 new_tile = GameTile((x,y), road_img, placed_game_tiles)
                 
     pygame.display.update()
