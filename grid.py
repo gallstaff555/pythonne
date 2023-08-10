@@ -42,7 +42,7 @@ class Grid():
         det = 1 / (a*d - b*c)
         return [(d*det, -b*det), (-c*det, a*det)]
     
-    # Convert til coords to raw coords and return a rect at that coordinate
+    # Convert tile coords to raw coords and return a rect at that coordinate
     def get_tile_rect(self, tile_coords):
         x = self.tile_coords_dict.get(tile_coords)[0]
         y = self.tile_coords_dict.get(tile_coords)[1] + (cfg.ADJ_Y_OFFSET / 2)
