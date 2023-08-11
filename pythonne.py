@@ -59,8 +59,7 @@ while running:
                 x = x + (cfg.TILE_WIDTH / 2)
                 y = y + cfg.TILE_HEIGHT
                 random_tile = random.randint(1,12) 
-                placed_tile = GameTile((x,y), pygame.image.load(f'./assets/sprites/roads/road_{random_tile}.png').convert_alpha(), \
-                            placed_game_tiles)
+                placed_tile = GameTile((x,y), f'./assets/sprites/roads/road_{random_tile}.png', placed_game_tiles)
                 game.add_game_tile(tile_x, tile_y, placed_tile)
 
     pygame.display.update()
