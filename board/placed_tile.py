@@ -1,6 +1,8 @@
 import pygame
 
-class GameTile(pygame.sprite.Sprite):
+class PlacedTile(pygame.sprite.Sprite):
+	# add 'info' field for tile details
+	# include orientation and image 
 	def __init__(self, pos, image, groups):
 		super().__init__(groups)
 		self.pos = pygame.Vector2(pos)

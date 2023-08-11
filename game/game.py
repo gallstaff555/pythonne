@@ -4,12 +4,13 @@
 import sys
 sys.path.insert(0,"..")
 
-from board.game_tile import GameTile
+#from board.placed_tile import PlacedTile
 
 class Game():
     def __init__(self, board_side_length):
         self.board_side_length = board_side_length
         self.board = []
+        self.init_board()
 
     def init_board(self):
         for row in range(0, self.board_side_length):
