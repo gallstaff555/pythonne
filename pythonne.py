@@ -28,7 +28,7 @@ tile_coords_dict = tile_map.get_tile_coords_dict()
 grid = Grid(tile_coords_dict)
 
 # Sprite group for storing placed tiles
-placed_game_tiles = SpriteGroup()
+placed_tiles_sprite_group = SpriteGroup()
 game = Game(cfg.ROW)
 tiles = Tiles()
 
@@ -61,7 +61,7 @@ while running:
                 y = y + cfg.TILE_HEIGHT
                 random_tile_index = random.randint(1,len(tiles.get_tiles())-1) 
                 tile_in_hand = tiles.use_tile(random_tile_index)
-                placed_tile = PlacedTile((x,y), f'./assets/sprites/roads/{tile_in_hand[1]}', placed_game_tiles)
+                placed_tile = PlacedTile((x,y), f'./assets/sprites/roads/{tile_in_hand[1]}', placed_tiles_sprite_group)
                 game.add_game_tile(tile_x, tile_y, placed_tile)
 
     pygame.display.update()
