@@ -1,4 +1,4 @@
-import pygame 
+import pygame
 
 class GameTile(pygame.sprite.Sprite):
 	def __init__(self, pos, image, groups):

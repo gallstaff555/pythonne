@@ -10,6 +10,7 @@ from board.tiled_map import TiledMap
 from board.grid import Grid
 from board.sprite_group import SpriteGroup
 from board.game_tile import GameTile
+from game.game import Game
 import random
 
 cfg = Config()
@@ -27,6 +28,8 @@ grid = Grid(tile_coords_dict)
 
 # Sprite group for storing placed tiles
 placed_game_tiles = SpriteGroup()
+game = Game(cfg.ROW)
+game.init_board()
 
 
 while running:
@@ -50,13 +53,15 @@ while running:
             running = False 
         if event.type == pygame.MOUSEBUTTONDOWN:
             if highlighted_tile is not None and grid.valid_tile(highlighted_tile):
-                print(f"Placing tile at {grid.get_mouseover_tile()}")
+                tile_x,tile_y = tile_x,tile_y = grid.get_mouseover_tile()
+                print(f"Placing tile at {tile_x},{tile_y}")
                 x,y = tile_coords_dict.get(grid.get_mouseover_tile())
                 x = x + (cfg.TILE_WIDTH / 2)
                 y = y + cfg.TILE_HEIGHT
-                random_tile = random.randint(1,12)
-                new_tile = GameTile((x,y), pygame.image.load(f'./assets/sprites/roads/road_{random_tile}.png').convert_alpha(), \
+                random_tile = random.randint(1,12) 
+                placed_tile = GameTile((x,y), pygame.image.load(f'./assets/sprites/roads/road_{random_tile}.png').convert_alpha(), \
                             placed_game_tiles)
+                game.add_game_tile(tile_x, tile_y, placed_tile)
 
     pygame.display.update()
     clock.tick(20)
