@@ -6,10 +6,10 @@ sys.path.insert(0,"..")
 
 import pygame
 from config import Config
-from display.tiled_map import TiledMap
-from display.grid import Grid
-from display.sprite_group import SpriteGroup
-from display.game_tile import GameTile
+from board.tiled_map import TiledMap
+from board.grid import Grid
+from board.sprite_group import SpriteGroup
+from board.game_tile import GameTile
 import random
 
 cfg = Config()
@@ -20,7 +20,7 @@ screen = pygame.display.set_mode((cfg.ROW * cfg.TILE_WIDTH, \
 clock = pygame.time.Clock()
 running = True 
 
-tile_map = TiledMap('./assets/map/basic-map.tmx')
+tile_map = TiledMap('./assets/map/basic-map-3.tmx')
 tile_map.render(screen)
 tile_coords_dict = tile_map.get_tile_coords_dict()
 grid = Grid(tile_coords_dict)
