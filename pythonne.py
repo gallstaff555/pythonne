@@ -36,7 +36,7 @@ tiles = Tiles()
 while running:
 
     tile_map.render(screen)
-    placed_game_tiles.draw(screen)
+    placed_tiles_sprite_group.draw(screen)
 
 
     # get tile grid coordinates of tile covered by mouse
