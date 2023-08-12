@@ -1,3 +1,5 @@
+import random
+
 class Tiles():
     def __init__(self):
         self.tiles = []
@@ -21,6 +23,15 @@ class Tiles():
     def use_tile(self, index):
         print(f"{len(self.tiles) - 2} remain")
         return self.tiles.pop(index)
+    
+    def preview_tile(self, index):
+        return self.tiles[index]
+    
+    # def get_next_tile(self):
+    #     random_tile_index = random.randint(1,len(tiles.get_tiles())-1) 
+    #     next_tile = self.use_tile(random_tile_index)
+    #     # placed_tile = PlacedTile((x,y), f'./assets/sprites/roads/{tile_in_hand[1]}', placed_tiles_sprite_group)
+    #     # return placed_tile
 
 # tile has four side and four corners
 # # terrain types: road, grass (castle, water)

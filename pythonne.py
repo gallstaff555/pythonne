@@ -32,10 +32,23 @@ placed_tiles_sprite_group = SpriteGroup()
 game = Game(cfg.ROW)
 tiles = Tiles()
 
+# Place first tile in center of board
+first_tile = tiles.use_tile(0)
+x,y = tile_coords_dict.get((8,8))
+x = x + (cfg.TILE_WIDTH / 2)
+y = y + cfg.TILE_HEIGHT
+placed_tile = PlacedTile((x,y), f'./assets/sprites/roads/{first_tile[1]}', placed_tiles_sprite_group)
+
+# Next playable tile setup
+preview_tile_sprite_group = pygame.sprite.Group()
+next_random = random.randint(1,len(tiles.get_tiles())-1) 
+next_tile = tiles.preview_tile(next_random)
+preview_tile = PlacedTile((50,50), f'./assets/sprites/roads/{next_tile[1]}', preview_tile_sprite_group)
 
 while running:
 
     tile_map.render(screen)
+    preview_tile_sprite_group.draw(screen)
     placed_tiles_sprite_group.draw(screen)
 
 
@@ -59,10 +72,15 @@ while running:
                 x,y = tile_coords_dict.get(grid.get_mouseover_tile())
                 x = x + (cfg.TILE_WIDTH / 2)
                 y = y + cfg.TILE_HEIGHT
-                random_tile_index = random.randint(1,len(tiles.get_tiles())-1) 
-                tile_in_hand = tiles.use_tile(random_tile_index)
-                placed_tile = PlacedTile((x,y), f'./assets/sprites/roads/{tile_in_hand[1]}', placed_tiles_sprite_group)
+                #random_tile = random.randint(1,len(tiles.get_tiles())-1) 
+                #next_tile = tiles.use_tile(next_random)
+                placed_tile = PlacedTile((x,y), f'./assets/sprites/roads/{next_tile[1]}', placed_tiles_sprite_group)
                 game.add_game_tile(tile_x, tile_y, placed_tile)
+
+                next_random = random.randint(1,len(tiles.get_tiles())-1) 
+                next_preview = tiles.preview_tile(next_random)
+                preview_tile = PlacedTile((50,50), f'./assets/sprites/roads/{next_preview[1]}', preview_tile_sprite_group)
+                next_tile = tiles.use_tile(next_random)
 
     pygame.display.update()
     clock.tick(20)
