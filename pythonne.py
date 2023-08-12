@@ -13,6 +13,7 @@ from board.placed_tile import PlacedTile
 from game.game import Game
 from game.tiles import Tiles
 from game.next_tile import NextTile
+#from game.next_tile import NextTile
 import random
 
 cfg = Config()
@@ -35,7 +36,7 @@ tiles = Tiles()
 next_tile = NextTile(tiles)
 
 preview, next = next_tile.next()
-preview_tile = PlacedTile((50,50), f'./assets/sprites/roads/{preview[1]}', tile_sprite_group)
+preview_tile = PlacedTile((50,50), f'./assets/sprites/roads/{preview[1]}', tile_sprite_group, preview[0])
 
 while running:
 
@@ -57,11 +58,18 @@ while running:
             running = False 
 
         pressed = pygame.key.get_pressed()
-        if pressed[pygame.K_LEFT]:
-            print("Attempting to rotate left")
-            next_tile.rotate_tile_left(preview)
+        if pressed[pygame.K_LEFT]: # rotate tile counter clockwise
+            old_tile = preview_tile
+            preview = next_tile.rotate_tile_left(preview)
+            preview_tile = PlacedTile((50,50), f'./assets/sprites/roads/{preview[1]}', tile_sprite_group, preview[0])
+            old_tile.kill()
+        if pressed[pygame.K_RIGHT]: # rotate tile clockwise
+            old_tile = preview_tile
+            preview = next_tile.rotate_tile_right(preview)
+            preview_tile = PlacedTile((50,50), f'./assets/sprites/roads/{preview[1]}', tile_sprite_group)
+            old_tile.kill()
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if highlighted_tile is not None and grid.valid_tile(highlighted_tile) and game.playable(highlighted_tile):
+            if highlighted_tile is not None and grid.valid_tile(highlighted_tile) and game.playable((highlighted_tile), preview):
                 
                 tile_x,tile_y = tile_x,tile_y = grid.get_mouseover_tile()
                 print(f"Placing tile at {tile_x},{tile_y}")
@@ -69,11 +77,14 @@ while running:
                 x = x + (cfg.TILE_WIDTH / 2)
                 y = y + cfg.TILE_HEIGHT
 
-                placed_tile = PlacedTile((x,y), f'./assets/sprites/roads/{next[1]}', tile_sprite_group)
+                old_tile = preview_tile
+                placed_tile = PlacedTile((x,y), f'./assets/sprites/roads/{next[1]}', tile_sprite_group, next[0])
                 game.add_game_tile(tile_x, tile_y, placed_tile)
                 preview, next = next_tile.next()
-                preview_tile = PlacedTile((50,50), f'./assets/sprites/roads/{preview[1]}', tile_sprite_group)
+                preview_tile = PlacedTile((50,50), f'./assets/sprites/roads/{preview[1]}', tile_sprite_group, preview[0])
+                old_tile.kill()
 
+                game.display_board()
 
     pygame.display.update()
     clock.tick(20)

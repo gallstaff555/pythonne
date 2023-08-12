@@ -8,7 +8,7 @@ class Tiles():
 
     # tile to array conversion
     # 0 / \ 1
-    # 2 \ / 3
+    # 3 \ / 2
 
     def init_tiles(self):
         self.tiles.append([['r','r','r','r'], 'four_way_road.png', 0, 0])
