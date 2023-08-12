@@ -56,7 +56,7 @@ while running:
         if event.type == pygame.QUIT:
             running = False 
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if highlighted_tile is not None and grid.valid_tile(highlighted_tile):
+            if highlighted_tile is not None and grid.valid_tile(highlighted_tile) and game.playable(highlighted_tile):
                 
                 tile_x,tile_y = tile_x,tile_y = grid.get_mouseover_tile()
                 print(f"Placing tile at {tile_x},{tile_y}")
@@ -73,7 +73,7 @@ while running:
     pygame.display.update()
     clock.tick(20)
 
-    if tiles.get_tile_count() < 1:
+    if tiles.get_tile_count() <= 1:
         print("No more tiles. Game over.")
         running = False
 

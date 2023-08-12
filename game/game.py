@@ -28,6 +28,9 @@ class Game():
     def get_game_tile(self, col, row):
         print (f"returning {self.board[row][col]}")
         return self.board[row][col]
+    
+    def playable(self, tile_coord):
+        return self.board[tile_coord[1]][tile_coord[0]] == 0
 
 
 # new_tile = GameTile((x,y), pygame.image.load(f'./assets/sprites/roads/road_{random_tile}.png').convert_alpha(), \
