@@ -13,7 +13,6 @@ from board.placed_tile import PlacedTile
 from game.game import Game
 from game.tiles import Tiles
 from game.next_tile import NextTile
-#from game.next_tile import NextTile
 import random
 
 cfg = Config()
