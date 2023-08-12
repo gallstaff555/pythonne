@@ -30,7 +30,7 @@ class Tiles():
     # def get_next_tile(self):
     #     random_tile_index = random.randint(1,len(tiles.get_tiles())-1) 
     #     next_tile = self.use_tile(random_tile_index)
-    #     # placed_tile = PlacedTile((x,y), f'./assets/sprites/roads/{tile_in_hand[1]}', placed_tiles_sprite_group)
+    #     # placed_tile = PlacedTile((x,y), f'./assets/sprites/roads/{tile_in_hand[1]}', tile_sprite_group)
     #     # return placed_tile
 
 # tile has four side and four corners
