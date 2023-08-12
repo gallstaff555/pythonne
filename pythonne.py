@@ -55,6 +55,11 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False 
+
+        pressed = pygame.key.get_pressed()
+        if pressed[pygame.K_LEFT]:
+            print("Attempting to rotate left")
+            next_tile.rotate_tile_left(preview)
         if event.type == pygame.MOUSEBUTTONDOWN:
             if highlighted_tile is not None and grid.valid_tile(highlighted_tile) and game.playable(highlighted_tile):
                 
