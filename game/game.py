@@ -50,36 +50,24 @@ class Game():
             return True
         
     def tile_right_compatible(self, tile_coord, preview_tile):
-        # check left tile 
-        # If room for left tile:
         if (tile_coord[0] < cfg.COL - 1):
-            # left tile is one col 
             left_tile = self.board[tile_coord[1]][tile_coord[0]+1]
-            # return True if left tile has not been placed
             if (left_tile == 0):
                 return True
-            # compare left edge of preview tile with right edge of left tile
             else: 
                 print(f"left {left_tile[0]} = {preview_tile[0][2]}")
                 return left_tile[Feature.LEFT] == preview_tile[0][Feature.RIGHT]
-        # there can be no above tile   
         else: 
             return True
         
     def tile_above_compatible(self, tile_coord, preview_tile):
-        # check above tile 
-        # If room for above tile:
         if (tile_coord[1] > 0):
-            # above tile is one row greater
             above_tile = self.board[tile_coord[1]+1][tile_coord[0]]
-            # return True if below tile has not been placed
             if (above_tile == 0):
                 return True
-            # compare bottom edge of preview tile with top edge of above tile
             else: 
                 print(f"above: {above_tile[1]} == {preview_tile[0][3]}")
-                return above_tile[Feature.TOP] == preview_tile[0][Feature.BOT]
-        # there can be no above tile   
+                return above_tile[Feature.TOP] == preview_tile[0][Feature.BOT] 
         else: 
             return True
         
