@@ -83,8 +83,6 @@ while running:
                 preview_tile = PlacedTile((50,50), f'./assets/sprites/roads/{preview[1]}', tile_sprite_group, preview[0])
                 old_tile.kill()
 
-                game.display_board()
-
     pygame.display.update()
     clock.tick(20)
 

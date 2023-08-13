@@ -25,7 +25,6 @@ class NextTile():
         tile[2] = (tile[2] - 1) % (tile[3] + 1)
         # decrement image by replacing int value in string with new position int
         tile[1] = tile[1].replace(f'{init_position}', str(tile[2]))
-        print("Tile rotated left!")
         return tile
 
     def rotate_tile_right(self, tile):
@@ -38,5 +37,4 @@ class NextTile():
         tile[2] = (tile[2] + 1) % (tile[3] + 1)
         # decrement image by replacing int value in string with new position int
         tile[1] = tile[1].replace(f'{init_position}', str(tile[2]))
-        print("Tile rotated right!")
         return tile

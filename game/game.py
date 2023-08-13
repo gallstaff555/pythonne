@@ -61,7 +61,7 @@ class Game():
             return True
         
     def tile_above_compatible(self, tile_coord, preview_tile):
-        if (tile_coord[1] > 0):
+        if (tile_coord[1] < cfg.ROW - 1):
             above_tile = self.board[tile_coord[1]+1][tile_coord[0]]
             if (above_tile == 0):
                 return True
@@ -72,7 +72,7 @@ class Game():
             return True
         
     def tile_below_compatible(self, tile_coord, preview_tile):
-        if (tile_coord[1] < cfg.ROW - 1):
+        if (tile_coord[1] > 0):
             below_tile = self.board[tile_coord[1]-1][tile_coord[0]]
             if (below_tile == 0):
                 return True
